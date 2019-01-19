@@ -1,0 +1,24 @@
+{% load i18n %}
+<div class="container">
+
+<div class="actions section-heading text-center">
+
+        {% for field in action_form %}
+            {% if field.label %}
+                {% if field.label %}<label>{{ field.label }} {% endif %}{{ field }}{% if field.label %}</label>{% endif %}
+            {% endif %}
+        {% endfor %}
+    <button type="submit" style="margin-left: 10px; margin-right: 10px; "class="btn btn-secondary btn-sm col-sm-1" title="{% trans "Run the selected action" %}" name="index" value="{{ action_index|default:0 }}">{% trans "Go" %}</button>
+
+    {% if actions_selection_counter %}
+        <span data-actions-icnt="{{ cl.result_list|length }}">{{ selection_note }}</span>
+        {% if cl.result_count != cl.result_list|length %}
+            <span class="all">{{ selection_note_all }}</span>
+            <span class="question">
+                <a href="#" title="{% trans "Click here to select the objects across all pages" %}">{% blocktrans with cl.result_count as total_count %}Select all {{ total_count }} {{ module_name }}{% endblocktrans %}</a>
+            </span>
+            <span class="clear"><a href="#">{% trans "Clear selection" %}</a></span>
+        {% endif %}
+    {% endif %}
+</div>
+</div>

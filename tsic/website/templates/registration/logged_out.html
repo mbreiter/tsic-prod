@@ -1,0 +1,17 @@
+{% extends "tsic/header.html" %}
+{% load staticfiles %}
+
+<div class="container">
+{% block content %}
+    <section>
+        <div class="container">
+            <div class="section-heading">
+                <h2> Logged out </h2>
+                <br>
+            </div>
+
+            <a href="{% url 'login'%}">Click here to login again.</a>
+        </div>
+    </section>
+{% endblock %}
+</div>

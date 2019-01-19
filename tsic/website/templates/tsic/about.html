@@ -1,0 +1,78 @@
+{% extends "tsic/header.html" %}
+{% load staticfiles %}
+
+{% block title %} about | {{ site_title|default:_('tsic') }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <section>
+        <div class="section-heading center">
+            <h2> Your details </h2>
+                <p class="text-muted"> Click
+                    <a class="text-muted" href="{% url 'edit_about' %}">here</a>
+                    to update your personal details
+                </p>
+                <hr>
+            <br>
+
+            <table class="table">
+
+                <col style="width:25%" span=2 />
+                <tr>
+                    <th scope="row">name</th>
+                    <td scope="row">{{ user.first_name }} {{user.last_name}} </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">username</th>
+                    <td scope="row">{{ user.username }} </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">email</th>
+                    <td scope="row">{{ user.email }} </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">name</th>
+                    <td scope="row">{{ user.first_name }} {{user.last_name}} </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">joined</th>
+                    <td scope="row">{{ user.date_joined }} </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">role</th>
+                    <td scope="row">
+                        {% if user.user_type == 1 %}
+                            Analyst
+                        {% elif user.user_type == 2 %}
+                            Associate
+                        {% else %}
+                            Quant
+                        {% endif%}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">email preferences</th>
+                    <td scope="row">
+                        {% if user.email_preferences == 0 %}
+                            Daily updates
+                        {% elif user.email_preferences == 1 %}
+                            Big changes in the portfolio
+                        {% elif user.email_preferences == 2  %}
+                            At the end of the semester
+                        {% else %}
+                            Never contacted
+                        {% endif%}
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </section>
+</div>
+{% endblock %}

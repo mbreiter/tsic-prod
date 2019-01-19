@@ -1,0 +1,65 @@
+{% extends "tsic/header.html" %}
+{% load staticfiles %}
+
+{% block title %} research | {{ site_title|default:_('tsic') }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <section>
+        <div class="section-heading">
+            <div class="row">
+                {% for category, reports in featured.items %}
+                    <div class="col-md-12">
+                        <div style="background-color:#BDD5EA;" class="text-center">
+                            <h2>Featured Reports</h2>
+                                <p class="text-muted">{{category.tagline}}</p>
+                            <hr>
+                        </div>
+                            <ul>
+                                {% for report in reports %}
+                                    <li>
+                                        <a href="documents/{{ report.file.name }}">{{report.title}}</a>
+                                        <br>
+                                        {{report.sub_title}}
+                                    </li>
+                                    <br>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+
+            <br>
+
+            <div class="row">
+                {% for category, reports in categories.items %}
+                    <div class="col-md-6">
+                        <div style="background-color:#BDD5EA;" class="text-center">
+                            <h2 style="background-color:#BDD5EA;">{{category.name}}</h2>
+                                <p class="text-muted">{{category.tagline}}</p>
+                            <hr>
+                        </div>
+                        <ul>
+                            {% for report in reports %}
+                                <li>
+                                    <a href="documents/{{ report.file.name }}">{{report.title}}</a>
+                                    <br>
+                                    {{report.sub_title}}
+                                </li>
+                                <br>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% if forloop.counter|divisibleby:"2" %}
+            </div>
+            <div class="row">
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+        </div>
+    </section>
+{% endblock %}
+</div>

@@ -1,0 +1,29 @@
+{% load i18n static %}
+
+{% if result_hidden_fields %}
+<div class="hiddenfields">{# DIV for HTML validation #}
+{% for item in result_hidden_fields %}{{ item }}{% endfor %}
+</div>
+{% endif %}
+
+{% if results %}
+<div class="results">
+    <br>
+    <table id="result_list" class='table-hover' style="padding-top: 10px;">
+        <col style="width:50%" span=2 />
+
+        <tbody>
+        {% for result in results %}
+            {% if result.form.non_field_errors %}
+                <tr scope="row">
+                    <td colspan="{{ result|length }}">{{ result.form.non_field_errors }}</td>
+                </tr>
+            {% endif %}
+                <tr scope="row" class="{% cycle 'row1' 'row2' %}">{% for item in result %}{{ item }}{% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endif %}

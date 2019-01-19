@@ -1,0 +1,114 @@
+{% extends "tsic/header.html" %}
+
+{% block title %} membership | {{ site_title|default:_('tsic') }} {% endblock %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+<section>
+
+    <div class="container">
+
+        <h2 class="text-center" style="margin-top: 10px;"> General Membership </h2>
+
+            <p>
+                For an annual fee of $25 CAD, general members will receive access to TSIC's comprehensive training workshops, such as the Valuation Bootcamp, Recruiting 101, and the Fintech Symposium.
+            </p>
+
+            <hr>
+        <br>
+
+        <div class="row">
+            <h4 class="col-lg-12 text-center light-muted">
+                2018-19 KICKOFF
+            </h4>
+
+            <div class="col-lg-4 my-auto">
+                <img src="{% static 'img/kickoff.png' %}">
+            </div>
+
+            <div class="col-lg-8 my-auto">
+
+                <p> Come join us on October 10 to learn about how you can get involved with the oldest investment club at U of T. At the event, our Associate team will be providing an overview of our general membership and the Analyst Program, followed by a Q&A session and open networking. </p>
+
+                <table class="table-borderless">
+                    <col style="width:30%" span=1 />
+
+                    <tr>
+                        <th> Dress Code </th>
+                        <td> Casual </td>
+                    </tr>
+
+                    <tr>
+                        <th> Date </th>
+                        <td> October 10 (Wednesday) 7-9PM </td>
+                    </tr>
+
+                    <tr>
+                        <th> Location </th>
+                        <td> Bahen Centre Room 1240 </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <h4 class="col-lg-12 text-center light-muted">
+                VALUATION BOOTCAMP
+            </h4>
+
+            <div class="col-lg-8 my-auto">
+
+                <p> Valuing a company is not an easy task. TSIC hosts a series of workshops for its members to familiarize themselves with a range of finance concepts that are practical and are used by professionals. The workshops will cover accounting concepts, valuation methodologies, M&A modelling, investment theses development, and other corporate finance topics. </p>
+
+            </div>
+
+            <div class="col-lg-4 my-auto">
+                <img src="{% static 'img/valuation.png' %}">
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <h4 class="col-lg-12 text-center light-muted">
+                RECRUITING 101
+            </h4>
+
+            <div class="col-lg-4 my-auto">
+                <img src="{% static 'img/recruiting.png' %}">
+            </div>
+
+            <div class="col-lg-8 my-auto">
+
+                <p> Finance recruiting is a competitive process. At TSIC, we prepare our members with the necessary technical and soft skills required to succeed in the process. Recruiting 101 sessions will be led by upper-year Associates who have recently found success in the process.  </p>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <h4 class="col-lg-12 text-center light-muted">
+                FINTECH SYMPOSIUM
+            </h4>
+
+            <div class="col-lg-8 my-auto">
+                <p> There is no doubt that technology is a leading factor driving changes in the financial services industry. Every year, TSIC invites fintech experts (cryptocurrency traders and exchanges) to discuss topics including cryptocurrency valuation, the future of blockchain, and employment opportunities within the sector. </p>
+            </div>
+
+            <div class="col-lg-4 my-auto">
+                <img src="{% static 'img/fintech.png' %}">
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+{% endblock %}

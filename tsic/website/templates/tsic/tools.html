@@ -1,0 +1,14 @@
+{% extends "tsic/header.html" %}
+{% load staticfiles %}
+
+{% block title %} tools | {{ site_title|default:_('tsic') }}{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <a class="navbar-brand">
+        <img class="center-block" src="{% static 'img/database_diagram.png' %}">
+    </a>
+
+{% endblock %}
+</div>

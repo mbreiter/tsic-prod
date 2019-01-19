@@ -1,0 +1,114 @@
+{% extends "tsic/header.html" %}
+{% load staticfiles %}
+<div class="container">
+{% block content %}
+    <section>
+    {% if registered %}
+        <h1> welcome to tsic </h1>
+    {% else %}
+            <div class="container">
+                <div class="section-heading text-center">
+                    <h2> Join </h2>
+
+                    <form class="form-horizontal" role="form" method="post" action="/register" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{form.non_field_errors}}</strong>
+                            </div>
+                        {% endif%}
+
+                        <table class="table">
+                            <col style="width:50%" span=1 />
+                            <tr>
+                                <div class="form-group">
+                                    <th scope="row"> <label for="username" class ="control-label"> username </label> <th>
+                                    <td scope="row"> <input class="form-control" placeholder="enter username" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" type="text"/> </td>
+                                    <td>
+                                        {% if form.username.errors %}
+                                            <strong>{{ form.username.errors}}</strong>
+                                        {% endif%}
+                                    </td>
+                                </div>
+                            </tr>
+
+                            <tr>
+                                <div class="form-group">
+                                    <th scope="row"> <label for="password" class ="control-label"> password </label> <th>
+                                    <td scope="row"> <input class="form-control" placeholder="enter password" id="{{ form.password.id_for_label }}" name="{{ form.password.html_name }}" type="password"/> </td>
+                                    <td>
+                                        {% if form.password.errors %}
+                                            <strong>{{ form.password.errors}}</strong>
+                                        {% endif%}
+                                    </td>
+                                </div>
+                            </tr>
+
+                            <tr>
+                                <div class="form-group">
+                                    <th scope="row"> <label for="confirm_password" class ="control-label"> confirm password </label> <th>
+                                    <td scope="row"> <input class="form-control" placeholder="confirm password" id="{{ form.confirm_password.id_for_label }}" name="{{ form.confirm_password.html_name }}" type="password"/> </td>
+                                    <td>
+                                        {% if form.confirm_password.errors %}
+                                            <strong>{{ form.confirm_password.errors}}</strong>
+                                        {% endif%}
+                                    </td>
+                                </div>
+                            </tr>
+
+                            <tr>
+                                <div class="form-group">
+                                    <th scope="row"> <label for="email" class ="control-label"> email </label> <th>
+                                    <td scope="row"> <input class="form-control" placeholder="email" id="{{ form.email.id_for_label }}" name="{{ form.email.html_name }}" type="text"/> </td>
+                                    <td>
+                                        {% if form.email.errors %}
+                                            <strong>{{ form.email.errors}}</strong>
+                                        {% endif%}
+                                    </td>
+                                </div>
+                            </tr>
+
+                            <tr>
+                                <div class="form-group">
+                                    <th scope="row"> <label for="user_type" class ="control-label"> user role </label> <th>
+                                    <td scope="row">
+                                        <select class="form-control" placeholder="enter role" id="{{ form.user_type.id_for_label }}" name="{{ form.user_type.html_name }}">
+                                            <option value="1">analyst</option>
+                                            <option value="2">associate</option>
+                                            <option value="3">quant</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        {% if form.user_type.errors %}
+                                            <strong>{{ form.user_type.errors}}</strong>
+                                        {% endif%}
+                                    </td>
+                                </div>
+                            </tr>
+
+                            <tr>
+                                <div class="form-group">
+                                    <th scope="row"> <label for="verify_user_type" class ="control-label"> verify user role </label> <th>
+                                    <td scope="row"> <input class="form-control" placeholder="verify role" id="{{ form.verify_user_type.id_for_label }}" name="{{ form.verify_user_type.html_name }}" type="password"/></td>
+                                    <td>
+                                        {% if form.verify_user_type.errors %}
+                                            <strong>{{ form.verify_user_type.errors}}</strong>
+                                        {% endif%}
+                                    </td>
+                                </div>
+                            </tr>
+                        </table>
+
+                        <input type="submit" class="btn btn-primary" value="join" style="margin-top:30px"/>
+                        <input type="hidden" name="next" value="{{ next }}"/> <br>
+
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    {% endif %}
+
+{% endblock %}
+</div>

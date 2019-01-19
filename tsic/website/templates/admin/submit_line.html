@@ -1,0 +1,12 @@
+{% load i18n admin_urls %}
+<div class="submit-row">
+{% if show_save %}<button type="submit" class="btn btn-primary btn-sm" value="{% trans 'Save' %}" class="default" name="_save">Save</button>{% endif %}
+{% if show_delete_link %}
+    {% url opts|admin_urlname:'delete' original.pk|admin_urlquote as delete_url %}
+    <a class="btn btn-danger btn-sm pull-left" href="{% add_preserved_filters delete_url %}" class="deletelink">{% trans "Delete" %}</a>
+
+{% endif %}
+{% if show_save_as_new %}<button type="submit" class="btn btn-primary btn-sm" value="{% trans 'Save as new' %}" name="_saveasnew">Save as new </button>{% endif %}
+{% if show_save_and_add_another %}<button type="submit" class="btn btn-secondary btn-sm" value="{% trans 'Save and add another' %}" name="_addanother"> Save and add another </button>{% endif %}
+{% if show_save_and_continue %}<button type="submit" class="btn btn-secondary btn-sm" value="{% trans 'Save and continue editing' %}" name="_continue"> Save and continue editing </button>{% endif %}
+</div>

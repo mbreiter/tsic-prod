@@ -1,0 +1,106 @@
+{% extends "tsic/header.html" %}
+{% load staticfiles %}
+
+{% block title %} edit details | {{ site_title|default:_('tsic') }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <section>
+    {% if registered %}
+        <h2> welcome to tsic </h2>
+    {% else %}
+        <div class="section-heading center">
+            <h2> Update your personal details </h2>
+
+            <form class="form-horizontal" role="form" method="post" action="/about/edit" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ form.non_field_errors }}</strong>
+                    </div>
+                {% endif%}
+
+                <table class="table">
+                    <col style="width:25%" span=2 />
+                    <tr>
+                        <div class="form-group">
+                            <th scope="row"> <label for="first_name" class ="control-label"> first name </label> <th>
+                            <td scope="row"> <input class="form-control" value="{{user.first_name}}" id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.html_name }}" type="text"/> </td>
+                            <td>
+                                {% if form.first_name.errors %}
+                                    <strong>{{ form.first_name.errors}}</strong>
+                                {% endif%}
+                            </td>
+                        </div>
+                    </tr>
+
+                    <tr>
+                        <div class="form-group">
+                            <th scope="row"> <label for="last_name" class ="control-label"> last name </label> <th>
+                            <td scope="row"> <input class="form-control" value="{{user.last_name}}" id="{{ form.last_name.id_for_label }}" name="{{ form.last_name.html_name }}" type="text"/> </td>
+                            <td>
+                                {% if form.last_name.errors %}
+                                    <strong>{{ form.last_name.errors}}</strong>
+                                {% endif%}
+                            </td>
+                        </div>
+                    </tr>
+
+                    <tr>
+                        <div class="form-group">
+                            <th scope="row"> <label for="username" class ="control-label"> username </label> <th>
+                            <td scope="row"> <input class="form-control" value="{{user.username}}" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" type="text"/> </td>
+                            <td>
+                                {% if form.username.errors %}
+                                    <strong>{{ form.username.errors}}</strong>
+                                {% endif%}
+                            </td>
+                        </div>
+                    </tr>
+
+                    <tr>
+                        <div class="form-group">
+                            <th scope="row"> <label for="email" class ="control-label"> email </label> <th>
+                            <td scope="row"> <input class="form-control" value="{{user.email}}" id="{{ form.email.id_for_label }}" name="{{ form.email.html_name }}" type="text"/> </td>
+                            <td>
+                                {% if form.email.errors %}
+                                    <strong>{{ form.email.errors}}</strong>
+                                {% endif%}
+                            </td>
+                        </div>
+                    </tr>
+
+                    <tr>
+                        <div class="form-group">
+                            <th scope="row"> <label for="email_preferences" class ="control-label"> email preferences </label> <th>
+                            <td scope="row">
+                                <select class="form-control" placeholder="update your email preference" id="{{ form.email_preferences.id_for_label }}" name="{{ form.email_preferences.html_name }}">
+                                    {% for preference in preferences%}
+                                        <option value="{{ preference.0 }}">{{ preference.1 }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td>
+                                {% if form.email_preferences.errors %}
+                                    <strong>{{ form.email_preferences.errors}}</strong>
+                                {% endif%}
+                            </td>
+                        </div>
+                    </tr>
+
+                </table>
+                <input type="submit" class="btn btn-primary" value="update" style="margin-top:30px"/>
+                <input type="hidden" name="next" value="{{ next }}"/> <br>
+            </form>
+        </section>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs container">
+    <a href="{% url 'about' %}">about me</a>
+    &rsaquo; edit
+    </div>
+{% endblock %}

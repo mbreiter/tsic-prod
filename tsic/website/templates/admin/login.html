@@ -1,0 +1,74 @@
+{% extends "admin/base_site.html" %}
+
+{% load staticfiles %}
+
+{% block content %}
+<div class="container">
+
+    <section>
+        {% if next %}
+            <div class="section-heading text-center">
+                <div class="col-md-12">
+                    <div class="alert alert-danger">
+                        {% if user.is_authenticated %}
+                            <strong> your account doesn't have access to this page. </strong>
+                        {% else %}
+                            <strong> please login to view this page. </strong>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="section-heading text-center">
+            <h2> Login</h2>
+
+            <form class="form-horizontal" role="form" method="post" action="{% url 'login' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{form.non_field_errors}}</strong>
+                    </div>
+                {% endif%}
+
+                <table class="table">
+                    <col style="width:50%" span=1 />
+                    <tr>
+                        <div class="form-group">
+                            <th scope="row"> <label for="username" class ="control-label"> username </label> <th>
+                            <td scope="row"> <input class="form-control" placeholder="enter username" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" type="text"/> </td>
+                            <td>
+                                {% if form.username.errors %}
+                                    <strong>{{ form.username.errors}}</strong>
+                                {% endif%}
+                            </td>
+                        </div>
+                    </tr>
+
+                    <tr>
+                        <div class="form-group">
+                            <th scope="row"> <label for="password" class ="control-label"> password </label> <th>
+                            <td scope="row"> <input class="form-control" placeholder="enter password" id="{{ form.password.id_for_label }}" name="{{ form.password.html_name }}" type="password"/> </td>
+                            <td>
+                                {% if form.password.errors %}
+                                    <strong>{{ form.password.errors}}</strong>
+                                {% endif%}
+                            </td>
+                        </div>
+                    </tr>
+                </table>
+
+                <input type="submit" class="btn btn-primary" value="login" style="margin-top:30px"/>
+                <input type="hidden" name="next" value="{{ next }}"/> <br>
+
+                <strong>
+                    <a style="margin-top:100px" href="{% url 'password_reset' %}" >forgot password?</a>
+                </strong>
+
+            </form>
+        </div>
+    </section>
+</div>
+
+{% endblock %}

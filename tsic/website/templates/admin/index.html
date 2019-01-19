@@ -1,0 +1,53 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "css/dashboard.css" %}" />{% endblock %}
+
+{% block content %}
+<section>
+    <div class="section-heading text-center">
+        <h2>Administration</h2>
+            <p class="text-muted">Manage TSIC strategy and content</p>
+        <hr>
+    </div>
+
+    {% if app_list %}
+        {% for app in app_list %}
+            <div class="container-fluid">
+                <table class="table">
+                    <h4>
+                        {{ app.name }}
+                    </h4>
+
+                    <col style="width:100%" span="3" />
+
+                    {% for model in app.models %}
+                        <tr>
+                            {% if model.admin_url %}
+                                <th scope="row"><a href="{{ model.admin_url }}">{{ model.name }}</a></th>
+                            {% else %}
+                                <th scope="row">{{ model.name }}</th>
+                            {% endif %}
+
+                            {% if model.add_url %}
+                                <td><a href="{{ model.add_url }}">Add</a></td>
+                            {% else %}
+                                <td>&nbsp;</td>
+                            {% endif %}
+
+                            {% if model.admin_url %}
+                                <td><a href="{{ model.admin_url }}">Edit</a></td>
+                            {% else %}
+                                <td>&nbsp;</td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endfor %}
+
+    {% else %}
+        <p>{% trans "You don't have permission to edit anything." %}</p>
+    {% endif %}
+</section>
+{% endblock %}
