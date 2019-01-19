@@ -26,8 +26,8 @@ USER_TYPES =  ('Staff', 'Analyst', 'Associate', 'Quant')
 USER_TYPE_KEYS = (os.environ['STAFF_PASS'], os.environ['ANALYST_PASS'], os.environ['ASSOCIATE_PASS'], os.environ['QUANT_PASS'])
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-ALLOWED_HOSTS=['localhost', '178.128.230.231']
+DEBUG = False
+ALLOWED_HOSTS=['localhost', '165.227.39.161']
 
 # Application definition
 LOGIN_REDIRECT_URL = '/'
