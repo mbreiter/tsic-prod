@@ -2,7 +2,7 @@ from django.shortcuts import render
 import quandl
 from alpha_vantage.timeseries import TimeSeries
 from iexfinance import get_historical_data, Stock
-from tsic.settings import APLHA_VANTAGE_KEY, CURRENCY_KEY, INTRIO_ID, INTRIO_PASS
+from tsic.settings import APLHA_VANTAGE_KEY, CURRENCY_KEY, INTRIO_ID, INTRIO_PASS, MEDIA_ROOT
 from funds.blb import *
 from funds.mvo import *
 from funds.statistics import *
@@ -504,7 +504,7 @@ def get_risk_free(start_date, end_date, dates, offline):
         for date in dates:
             risk_data.loc[date] = np.NaN
     else:
-        risk_data = pd.read_csv("website/static/documents/risk_free.csv", index_col="date", dtype={'INDEX':str})
+        risk_data = pd.read_csv(MEDIA_ROOT + "/risk_free.csv", index_col="date", dtype={'INDEX':str})
 
         return risk_data
 
@@ -556,7 +556,7 @@ def get_risk_free(start_date, end_date, dates, offline):
     # occasions, use the last yield available with a forward fill
     risk_data.fillna(method='ffill', inplace=True)
 
-    risk_data.to_csv("website/static/documents/risk_free.csv")
+    risk_data.to_csv(MEDIA_ROOT + "/risk_free.csv")
 
     return risk_data
 
@@ -726,7 +726,7 @@ def get_portfolio_value(portfolio, prices):
         return current_prices.mul(quantities).sum()
 
 def make_portfolio_summary(write_data, filename):
-    with open("website/documents/" + filename, 'w') as file:
+    with open(MEDIA_ROOT + '/' + filename, 'w') as file:
         writer = csv.writer(file)
         # writer.writerow(write_data.columns)
         writer.writerow(['date', 'value'])
