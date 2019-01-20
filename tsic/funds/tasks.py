@@ -24,7 +24,6 @@ logger = get_task_logger(__name__)
 # UPDATES PORTFOLIO VALUES AT 00h17ET WEEK-DAILY
 @periodic_task(
     run_every=(crontab(hour=4, minute=17, day_of_week='1-5')),
-    # run_every=timedelta(minutes=1),
     name="update_portfolio_numbers",
     ignore_result=True
 )
@@ -98,7 +97,6 @@ def write_summary(portfolio, date, portfolio_value):
 # IF NEEDED, REBALANCE THE PORTFOLIO AT 00h00ET WEEK-DAILY
 @periodic_task(
     run_every=(crontab(hour=4, minute=00, day_of_week='1-5')),
-    # run_every=timedelta(minutes=3),
     name="rebalance_portfolios",
     ignore_result=True
 )
@@ -144,7 +142,7 @@ def send_daily_emails():
 
     email_list = []
 
-    for user in users:
+    for user in [user for user in users if user.email_preferences == 0]:
         email_list.append(user.email)
 
     message = "TSIC EOD Portfolio Summary | " +  day.date().strftime('%Y-%m-%d')
