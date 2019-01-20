@@ -85,6 +85,12 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="{% url 'membership' %}">
+                            membership
+                        </a>
+                    </li>
+
                     {% if user.is_authenticated %}
                         <li class="nav-item dropdown">
                             <a class="nav-link js-scroll-trigger" data-toggle="dropdown" href="#">
