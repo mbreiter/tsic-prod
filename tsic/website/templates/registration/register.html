@@ -1,5 +1,8 @@
 {% extends "tsic/header.html" %}
 {% load staticfiles %}
+
+{% block title %} join tsic | {{ site_title|default:_('tsic') }}{% endblock %}
+
 <div class="container">
 {% block content %}
     <section>
