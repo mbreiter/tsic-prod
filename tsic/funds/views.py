@@ -11,6 +11,7 @@ import pandas as pd
 from math import *
 import math
 import numpy as np
+from gurobipy import *
 from datetime import datetime
 from pandas.tseries.holiday import USFederalHolidayCalendar
 from pandas.tseries.offsets import CustomBusinessDay
